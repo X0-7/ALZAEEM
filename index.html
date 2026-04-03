@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ALZAEEM | Digital Agency</title>
+    <title>ALZAEEM </title>
     
     <!-- SEO -->
     <meta name="description" content="شركة تصميم مواقع وصفحات هبوط احترافية في مصر. نحول الزوار إلى عملاء.">
     <meta name="keywords" content="تصميم مواقع, صفحات هبوط, برمجة, ALZAEEM, انس احمد">
+    <meta name="theme-color" content="#050505">
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+
+    <!-- Preload صورة البروفايل -->
+    <link rel="preload" href="1.jpeg" as="image">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -21,7 +25,7 @@
       gtag('config', 'G-XXXXXXXXXX');
     </script>
 
-    <!-- Fonts -->
+    <!-- Fonts مع display=swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@300;500;800;900&display=swap" rel="stylesheet">
@@ -49,7 +53,6 @@
             overflow: hidden; 
             height: 100vh;
             line-height: 1.6;
-            scroll-behavior: smooth;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -85,7 +88,7 @@
         .lang-btn:hover { background: rgba(255,255,255,0.12); border-color: var(--accent-color); }
         .lang-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
         .lang-btn-mobile {
-            position: fixed; top: 14px; right: 50%; transform: translateX(50%);
+            position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
             z-index: 2500; display: none;
         }
 
@@ -171,7 +174,7 @@
         }
         .faq-question {
             padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-            font-weight: 600; color: #fff; transition: 0.3s;
+            font-weight: 600; color: #fff; transition: 0.3s; gap: 1rem;
         }
         .faq-question:hover { background: rgba(255,255,255,0.05); }
         .faq-answer {
@@ -179,7 +182,7 @@
             background: rgba(0,0,0,0.2);
         }
         .faq-answer p { padding: 1.5rem; color: #ccc; border-top: 1px solid var(--border-color); }
-        .faq-icon { transition: 0.3s; }
+        .faq-icon { transition: 0.3s; flex-shrink: 0; }
         .faq-item.active .faq-icon { transform: rotate(180deg); }
         .faq-item.active .faq-answer { max-height: 200px; }
 
@@ -190,8 +193,9 @@
         .proof-text { color: #fff; font-weight: 600; font-size: 1.1rem; }
         .proof-sub { color: #888; font-size: 0.9rem; margin-top: 5px; display: block; }
 
+        /* ← تصليح: text-align: start عشان يتبع الاتجاه */
         .contact-form {
-            max-width: 500px; margin: 0 auto; text-align: right;
+            max-width: 500px; margin: 0 auto; text-align: start;
             background: rgba(20,20,20,0.6); padding: 2.5rem;
             border-radius: 20px; border: 1px solid var(--border-color);
             backdrop-filter: blur(10px);
@@ -279,18 +283,49 @@
         .skill { background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.9rem; color: #ccc; border: 1px solid var(--border-color); }
         .contact-wrapper { max-width: 800px; margin: 0 auto; text-align: center; }
 
+        /* ========================================
+           تصليحات الموبايل — من غير ما يتغير الشكل
+           ======================================== */
         @media (max-width: 768px) {
-            .desktop-nav { display: none; } .mobile-nav { display: flex; }
+            .desktop-nav { display: none; }
+            .mobile-nav { display: flex; }
             .lang-btn-mobile { display: inline-flex; }
-            .stats-row { gap: 1.5rem; flex-wrap: wrap; padding: 1.5rem; } .stat-item { width: 45%; }
+
+            /* ← تصليح 1: تقليل الـ padding فوق عشان النافبار مخفي */
+            .page-section { padding: 55px 5% 100px 5%; }
+
+            /* ← تصليح 2: الزرار الكبير بيتكسر بدل ما يقطع */
+            .btn-primary {
+                white-space: normal;
+                text-align: center;
+                line-height: 1.5;
+                max-width: 92%;
+            }
+
+            /* ← تصليح 3: الـ grid يبقى عمود واحد عشان مفيش overflow */
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+
+            .stats-row { gap: 1.5rem; flex-wrap: wrap; padding: 1.5rem; }
+            .stat-item { width: 45%; }
+
             .about-split { grid-template-columns: 1fr; gap: 2rem; }
+
+            /* ← تصليح 4: تقليل padding قسم النتائج */
+            .proof-section { padding: 1.5rem; border-radius: 16px; }
+            .proof-grid { gap: 1rem; }
+
             .float-wa { bottom: 80px; right: 20px; width: auto; padding: 10px 15px; font-size: 0.9rem; }
-            .vault-number { font-size: 3rem; opacity: 0.1; } .hero-container { padding-top: 5vh; }
-            .btn-primary { font-size: 0.9rem; padding: 0.8rem 1.5rem; }
+            .vault-number { font-size: 3rem; opacity: 0.1; }
+            .hero-container { padding-top: 3vh; }
             .scroll-top { bottom: 140px; left: 20px; }
+
+            /* ← تصليح 5: حجم الفورم مناسب أكتر */
+            .contact-form { padding: 1.5rem; border-radius: 16px; }
         }
         @media (min-width: 769px) {
-            .desktop-nav { display: flex; } .mobile-nav { display: none; }
+            .desktop-nav { display: flex; }
+            .mobile-nav { display: none; }
         }
     </style>
 </head>
@@ -302,7 +337,6 @@
     <!-- زرار اللغة للموبايل -->
     <button class="lang-btn lang-btn-mobile" id="langMob" onclick="switchLang()">EN</button>
 
-    <!-- القوائم -->
     <nav class="desktop-nav">
         <div class="brand">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-color)"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
@@ -340,10 +374,10 @@
         <div id="home" class="page-section active">
             <div class="hero-container">
                 <div class="profile-circle reveal">
-                    <img src="1.jpeg" alt="صورة الوجه (1.jpeg)">
+                    <img src="1.jpeg" alt="Profile">
                 </div>
                 <div class="hero-badge reveal">Digital Agency • Since 2023</div>
-                <h1 class="hero-title reveal">ALZAEEM<br>DIGITAL</h1>
+                <h1 class="hero-title reveal">ALZAEEM<br></h1>
                 <p class="hero-desc reveal" data-ar="شركة تطوير وصناعة المواقع وصفحات الهبوط. نصنع المستقبل الرقمي بأعلى معايير الجودة." data-en="A web development and landing page agency. We build the digital future with the highest quality standards.">شركة تطوير وصناعة المواقع وصفحات الهبوط. نصنع المستقبل الرقمي بأعلى معايير الجودة.</p>
                 <button onclick="openPage('contact')" class="btn-primary reveal" data-ar="احصل على موقع يجيبك عملاء خلال 3 أيام" data-en="Get a website that brings you clients in 3 days">احصل على موقع يجيبك عملاء خلال 3 أيام</button>
 
@@ -354,7 +388,6 @@
                 </div>
             </div>
 
-            <!-- قسم الخدمات -->
             <div style="max-width: 1200px; margin: 4rem auto 0 auto; padding: 0 5%;">
                 <h2 class="reveal" style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: #fff;" data-ar="خدماتنا" data-en="Our Services">خدماتنا</h2>
                 <p class="reveal" style="text-align: center; color: #aaa; margin-bottom: 3rem;" data-ar="حلول رقمية مصممة لزيادة مبيعاتك" data-en="Digital solutions designed to boost your sales">حلول رقمية مصممة لزيادة مبيعاتك</p>
@@ -381,7 +414,6 @@
                 </div>
             </div>
 
-            <!-- قسم النتائج -->
             <div style="max-width: 1200px; margin: 4rem auto 0 auto; padding: 0 5%;">
                 <div class="proof-section reveal">
                     <h2 style="text-align: center; font-size: 2rem; margin-bottom: 1rem; color: #fff;" data-ar="نتائج عملائنا" data-en="Our Clients' Results">نتائج عملائنا</h2>
@@ -394,7 +426,6 @@
                 </div>
             </div>
 
-            <!-- قسم الأسئلة الشائعة -->
             <div class="faq-section reveal">
                 <h2 style="text-align: center; font-size: 2rem; margin-bottom: 3rem; color: #fff;" data-ar="أسئلة شائعة" data-en="FAQ">أسئلة شائعة</h2>
                 
@@ -494,67 +525,53 @@
     </div>
 
     <script>
-        /* === نظام تبديل اللغة === */
         var lang = 'ar';
 
         function switchLang() {
             lang = lang === 'ar' ? 'en' : 'ar';
             var root = document.documentElement;
-
-            // اتجاه الصفحة
             root.lang = lang;
             root.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-            // الخط
             root.style.setProperty('--font-main', lang === 'ar' ? "'Tajawal', sans-serif" : "'Inter', sans-serif");
 
-            // كل النصوص
             document.querySelectorAll('[data-' + lang + ']').forEach(function(el) {
                 el.textContent = el.getAttribute('data-' + lang);
             });
-
-            // الـ placeholders
             document.querySelectorAll('[data-ph-' + lang + ']').forEach(function(el) {
                 el.placeholder = el.getAttribute('data-ph-' + lang);
             });
-
-            // الـ select options
             document.querySelectorAll('#c-type option').forEach(function(opt) {
                 var val = opt.getAttribute('data-' + lang);
                 if (val) { opt.textContent = val; opt.value = val; }
             });
 
-            // نص الزرار
             var label = lang === 'ar' ? 'EN' : 'عربي';
             document.getElementById('langDesk').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> ' + label;
             document.getElementById('langMob').textContent = label;
 
-            // حفظ
             localStorage.setItem('az-lang', lang);
         }
 
-        // استرجاع اللغة المحفوظة
         if (localStorage.getItem('az-lang') === 'en') switchLang();
 
-        /* === باقي الوظائف (بدون أي تعديل) === */
         function openPage(pageId) {
-            document.querySelectorAll('.page-section').forEach(page => { page.classList.remove('active'); });
+            document.querySelectorAll('.page-section').forEach(function(page) { page.classList.remove('active'); });
             document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.mobile-btn').forEach(btn => btn.classList.remove('active'));
-            const mobBtn = document.getElementById('mob-' + pageId);
-            if(mobBtn) mobBtn.classList.add('active');
-            document.querySelectorAll('.nav-link').forEach(link => {
+            document.querySelectorAll('.mobile-btn').forEach(function(btn) { btn.classList.remove('active'); });
+            var mobBtn = document.getElementById('mob-' + pageId);
+            if (mobBtn) mobBtn.classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(function(link) {
                 link.classList.remove('active');
-                if(link.getAttribute('onclick').includes(pageId)) { link.classList.add('active'); }
+                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)) { link.classList.add('active'); }
             });
-            window.scrollTo(0,0);
+            document.querySelector('.page-section.active').scrollTo(0, 0);
         }
 
         function sendToWhatsapp() {
             var name = document.getElementById('c-name').value;
             var phone = document.getElementById('c-phone').value;
             var type = document.getElementById('c-type').value;
-            if(name === "" || phone === "") { alert(lang === 'ar' ? "من فضلك املأ الاسم ورقم الهاتف" : "Please fill in your name and phone number"); return; }
+            if (name === "" || phone === "") { alert(lang === 'ar' ? "من فضلك املأ الاسم ورقم الهاتف" : "Please fill in your name and phone number"); return; }
             var text;
             if (lang === 'ar') {
                 text = "مرحباً أنس ، أريد الاستفسار عن مشروع جديد.%0a%0a👤 الاسم: " + name + "%0a📱 الهاتف: " + phone + "%0a💼 نوع المشروع: " + type;
@@ -573,22 +590,22 @@
         }
 
         document.addEventListener("DOMContentLoaded", function() {
-            const reveals = document.querySelectorAll(".reveal");
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => { if (entry.isIntersecting) entry.target.classList.add("active"); });
+            var reveals = document.querySelectorAll(".reveal");
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add("active"); });
             }, { threshold: 0.1 });
-            reveals.forEach((element) => observer.observe(element));
+            reveals.forEach(function(element) { observer.observe(element); });
 
-            const scrollBtn = document.getElementById('scrollTop');
-            const checkScroll = () => {
-                const activePage = document.querySelector('.page-section.active');
-                if(activePage.scrollTop > 300) {
+            var scrollBtn = document.getElementById('scrollTop');
+            var checkScroll = function() {
+                var activePage = document.querySelector('.page-section.active');
+                if (activePage.scrollTop > 300) {
                     scrollBtn.classList.add('visible');
                 } else {
                     scrollBtn.classList.remove('visible');
                 }
             };
-            document.querySelectorAll('.page-section').forEach(section => {
+            document.querySelectorAll('.page-section').forEach(function(section) {
                 section.addEventListener('scroll', checkScroll);
             });
         });
